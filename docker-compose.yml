@@ -1,0 +1,15 @@
+version: '3.4'
+
+services:
+  warframe_trade_api:
+    image: ${DOCKER_REGISTRY-}warframetradeapi
+    build:
+      context: .
+      dockerfile: Warframe_trade_api/Dockerfile
+
+  warframe-tradeblazorapp:
+    image: ${DOCKER_REGISTRY-}warframetradeblazorapp
+    build:
+      context: .
+      dockerfile: warframe-TradeBlazorAPP/Dockerfile
+

@@ -1,0 +1,31 @@
+﻿@page "/counter"
+@rendermode InteractiveServer
+
+<PageTitle>Counter</PageTitle>
+
+<h1>Counter</h1>
+
+<p role="status">Current count: @currentCount @teststing</p>
+
+<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+
+@code {
+    using warframe_TradeBlazorAPP.Components.models;
+    private int currentCount = 0;
+
+    private string teststing = "";
+    private void IncrementCount()
+    {
+        currentCount++;
+    }
+    protected override void OnInitialized()
+    {
+        currentCount += 100;
+        List<ite
+        using(HttpClient client = new())
+        {
+            HttpResponseMessage messege = client.GetAsync("https://localhost:44350/api/Warframe").Result;
+            teststing = messege.Content.ReadAsStringAsync().Result ?? "https://localhost:44350/api/Warframe";
+        }
+    }
+}
