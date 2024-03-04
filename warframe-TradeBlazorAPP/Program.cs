@@ -1,10 +1,14 @@
 using warframe_TradeBlazorAPP.Components;
+using Syncfusion.Blazor;
 
 var builder = WebApplication.CreateBuilder(args);
-
+if (Environment.GetEnvironmentVariable("Endpoint") == null)
+    Environment.SetEnvironmentVariable("Endpoint", "https://localhost:44350/api/Warframe");
 // Add services to the container.
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
+
+builder.Services.AddSyncfusionBlazor();
 
 var app = builder.Build();
 

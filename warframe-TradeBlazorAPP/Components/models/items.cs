@@ -2,13 +2,13 @@
 {
     public class PayloadItems
     {
-        public items_ payload { get; set; }
+        public Items_ payload { get; set; }
     }
-    public class items_
+    public class Items_
     {
-        public List<item> items { get; set; } = new();
+        public List<Item> items { get; set; } = new();
     }
-    public class item
+    public class Item
     {
         public string id { get; set; }
         public string url_name { get; set; }

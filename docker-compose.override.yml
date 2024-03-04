@@ -18,7 +18,7 @@ services:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_HTTP_PORTS=8080
       - ASPNETCORE_HTTPS_PORTS=8081
-      - Endpoint=warframe-trade-backend:8080/api
+      - Endpoint=http://warframe-trade-backend:8080/api/Warframe
     ports:
       - "8080"
       - "8081"

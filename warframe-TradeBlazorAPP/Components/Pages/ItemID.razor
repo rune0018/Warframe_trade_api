@@ -1,29 +1,42 @@
 ﻿@page "/items/{id}"
 
 <h3>itemID @Id</h3>
-<SfChart Title="Crude Steel Production Annual Growth" Width="100%" Theme="@Theme">
-    <ChartArea><ChartAreaBorder Width="0"></ChartAreaBorder></ChartArea>
-    <ChartPrimaryXAxis ValueType="Syncfusion.Blazor.Charts.ValueType.DateTime" EdgeLabelPlacement="EdgeLabelPlacement.Shift">
-        <ChartAxisMajorGridLines Width="0"></ChartAxisMajorGridLines>
-    </ChartPrimaryXAxis>
-    <ChartPrimaryYAxis Title="Million Metric Tons" Minimum="0" Maximum="20" Interval="4">
-        <ChartAxisLineStyle Width="0"></ChartAxisLineStyle>
-        <ChartAxisMajorTickLines Width="0"></ChartAxisMajorTickLines>
-    </ChartPrimaryYAxis>
-    <ChartTooltipSettings Enable="true"></ChartTooltipSettings>
+@* <SFChart>
+    <ChartPrimaryXAxis ValueType="Syncfusion.Blazor.Charts.ValueType.DateTime" LabelFormat="yyyy-MM-dd"></ChartPrimaryXAxis>
     <ChartSeriesCollection>
-        <ChartSeries DataSource="@ChartData" Name="Vietnam" XName="Period" Width="2"
-                     Opacity="1" YName="Viet_Growth" Type="ChartSeriesType.Line">
-            <ChartMarker Visible="true" Width="7" Height="7" IsFilled="true" Shape="ChartShape.Circle">
-            </ChartMarker>
-        </ChartSeries>
+        <ChartSeries DataSource="@ChartData" XName="time" YName="price"></ChartSeries>
     </ChartSeriesCollection>
-    <ChartLegendSettings EnableHighlight="true"></ChartLegendSettings>
-</SfChart>
+</SFChart> *@
+<h3>price : time</h3>
+@foreach(var order in ChartData)
+{
+    <h3>@order.price : @order.time</h3>
+}
 @code {
     [Parameter]
-    public string? Id { get; set; }
+    public string Id { get; set; } = "hejsa";
 
-    
+    public List<Chartdat> ChartData { get; set; }
 
+    public class Chartdat
+    {
+        public double price { get; set; }
+        public DateTime time { get; set; }
+    }
+    protected override void OnInitialized()
+    {
+        List<warframe_TradeBlazorAPP.Components.models.Item> items = new();
+        using (HttpClient client = new())
+        {
+            HttpResponseMessage messege = client.GetAsync($"{Environment.GetEnvironmentVariable("Endpoint")}/{Id}/orders").Result;
+
+            ChartData = new();
+            ChartData.AddRange(new List<Chartdat>()
+            {
+                new Chartdat(){time=DateTime.Now.AddDays(-1),price=double.Parse( messege.Content.ReadAsStringAsync().Result)-1 },
+                new Chartdat(){time=DateTime.Now.AddDays(-2),price=double.Parse( messege.Content.ReadAsStringAsync().Result)-2 },
+                new Chartdat(){time=DateTime.Now.AddDays(-3),price=double.Parse( messege.Content.ReadAsStringAsync().Result)-3 }
+            });
+        }
+    }
 }
