@@ -1,7 +1,7 @@
 ﻿@page "/items/{id}"
 
 <h3>itemID @Id</h3>
-<SfChart Title="Crude Steel Production Annual Growth" Width="@Width" Theme="@Theme">
+<SfChart Title="Crude Steel Production Annual Growth" Width="100%" Theme="@Theme">
     <ChartArea><ChartAreaBorder Width="0"></ChartAreaBorder></ChartArea>
     <ChartPrimaryXAxis ValueType="Syncfusion.Blazor.Charts.ValueType.DateTime" EdgeLabelPlacement="EdgeLabelPlacement.Shift">
         <ChartAxisMajorGridLines Width="0"></ChartAxisMajorGridLines>
@@ -17,31 +17,13 @@
             <ChartMarker Visible="true" Width="7" Height="7" IsFilled="true" Shape="ChartShape.Circle">
             </ChartMarker>
         </ChartSeries>
-        <ChartSeries DataSource="@ChartData" Name="Canada" XName="Period" Width="2"
-                     Opacity="1" YName="Can_Growth" Type="ChartSeriesType.Line">
-            <ChartMarker Visible="true" Width="6" IsFilled="true" Height="6" Shape="ChartShape.Triangle">
-            </ChartMarker>
-        </ChartSeries>
-        <ChartSeries DataSource="@ChartData" Name="Malaysia" XName="Period" Width="2"
-                     Opacity="1" YName="Mal_Growth" Type="ChartSeriesType.Line">
-            <ChartMarker Visible="true" Width="7" IsFilled="true" Height="7" Shape="ChartShape.Diamond">
-            </ChartMarker>
-        </ChartSeries>
-        <ChartSeries DataSource="@ChartData" Name="Egypt" XName="Period" Width="2"
-                     Opacity="1" YName="Egy_Growth" Type="ChartSeriesType.Line">
-            <ChartMarker Visible="true" Width="5" IsFilled="true" Height="5" Shape="ChartShape.Rectangle">
-            </ChartMarker>
-        </ChartSeries>
-        <ChartSeries DataSource="@ChartData" Name="Indonesia" XName="Period" Width="2"
-                     Opacity="1" YName="Ind_Growth" Type="ChartSeriesType.Line">
-            <ChartMarker Visible="true" Width="7" IsFilled="true" Height="7" Shape="ChartShape.Pentagon">
-            </ChartMarker>
-        </ChartSeries>
     </ChartSeriesCollection>
     <ChartLegendSettings EnableHighlight="true"></ChartLegendSettings>
 </SfChart>
 @code {
     [Parameter]
     public string? Id { get; set; }
+
+    
 
 }
